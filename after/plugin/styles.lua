@@ -6,4 +6,7 @@ function ColorNvim(color)
 	vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 end
 
+vim.o.background = "dark"
+vim.g.gruvbox_material_background = "hard"
+vim.g.gruvbox_material_foreground = "original"
 ColorNvim()
