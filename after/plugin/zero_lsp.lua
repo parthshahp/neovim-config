@@ -12,7 +12,7 @@ end)
 -- here you can setup the language servers
 require('mason').setup({})
 require('mason-lspconfig').setup({
-  ensure_installed = {'gopls', 'pyright', 'tsserver'},
+  ensure_installed = {'gopls', 'pyright', 'tsserver', 'htmx', 'html'},
   handlers = {
     lsp_zero.default_setup,
   },
