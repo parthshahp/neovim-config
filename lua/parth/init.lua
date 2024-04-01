@@ -1,4 +1,5 @@
-require("parth.remap")
+require("parth.config.set")
 require("parth.lazy")
-require("parth.set")
-
+require("parth.config.remap")
+require("parth.config.styles")
+require("parth.config.nvim_lsp")

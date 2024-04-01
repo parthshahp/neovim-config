@@ -1,12 +1,16 @@
 return { 'tpope/vim-fugitive',
          'tpope/vim-sleuth',
-         'numtoStr/Comment.nvim', opts ={}, lazy=true,
          'nvim-tree/nvim-web-devicons',
+         {
+           'numtoStr/Comment.nvim', opts ={}, lazy=false,
+           config = function()
+            require("Comment").setup()
+          end
+         },
          {
            'lewis6991/gitsigns.nvim',
            config = function()
              require("gitsigns").setup()
-             vim.keymap.set("n", "<leader>gp", ":Gitsigns preview_hunk<CR>", {})
            end
          }
      }

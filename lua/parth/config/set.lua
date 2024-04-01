@@ -1,3 +1,4 @@
+vim.g.mapleader = " "
 vim.opt.nu = true
 vim.opt.relativenumber = true
 
@@ -21,4 +22,3 @@ vim.opt.cursorline = true
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
-vim.g.mapleader = " "
