@@ -18,7 +18,7 @@ o.wrap = false
 
 o.hlsearch = true
 o.incsearch = true
-o.inccommand = "split"
+-- o.inccommand = "split"
 
 o.scrolloff = 14
 o.signcolumn = "yes"

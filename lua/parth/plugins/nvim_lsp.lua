@@ -32,7 +32,10 @@ return {
   },
   --LSP
   {
-    'neovim/nvim-lspconfig'
+    'neovim/nvim-lspconfig',
+    config = function()
+      require("parth.config.nvim_lsp").defaults()
+    end
   },
   --Completion
   {
