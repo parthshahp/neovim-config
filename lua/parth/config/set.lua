@@ -1,11 +1,18 @@
 local o = vim.o
+local g = vim.g
 
-vim.g.mapleader = " "
+-- Global
+g.mapleader = " "
+g.netrw_liststyle = 3
+g.netrw_winsize = 20
+g.netrw_banner = 0
+
+-- Options
 o.mouse = "a"
 
 o.nu = true
 o.numberwidth = 2
-o.ruler = true
+o.ruler = false
 o.relativenumber = true
 
 o.tabstop = 2
