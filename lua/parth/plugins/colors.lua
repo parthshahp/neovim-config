@@ -9,5 +9,10 @@ return {
     "rebelot/kanagawa.nvim",
     lazy = true,
     -- config = function() vim.print("setup kanagawa") end,
+  },
+  {
+    "catppuccin/nvim",
+    name = "catppuccin",
+    lazy = true,
   }
 }

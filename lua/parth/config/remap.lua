@@ -60,3 +60,5 @@ map("n", "<leader>fz", builtin.current_buffer_fuzzy_find, { desc = "Current Buff
 map("n", "<leader>fr", function()
   require("telescope.builtin").lsp_references()
 end, { desc = "Find References" })
+
+map("n", "<leader>th", "<cmd>Themery<CR>", { desc = "Themery" })
