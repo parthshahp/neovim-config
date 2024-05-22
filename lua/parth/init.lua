@@ -1,5 +1,5 @@
 require("parth.config.set")
 require("parth.lazy")
 require("parth.config.remap")
--- require("parth.config.styles")
+require("parth.config.SetColor")
 require("parth.config.nvim_lsp")

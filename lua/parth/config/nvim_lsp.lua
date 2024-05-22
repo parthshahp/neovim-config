@@ -33,30 +33,6 @@ local default_setup = function(server)
   })
 end
 
--- Mason setup
-require('mason').setup({})
-require('mason-lspconfig').setup({
-  ensure_installed = {
-    -- "lua-language-server",
-    -- "stylua",
-    -- "prettierd",
-    -- "gopls",
-    -- "pyright",
-    -- "isort",
-    -- "html-lsp",
-    -- "css-lsp",
-    -- "tailwindcss-language-server",
-    -- "typescript-language-server",
-    -- "eslint-lsp",
-    -- "svelte",
-    -- "svelte-language-server",
-  },
-  handlers = {
-    default_setup,
-  },
-})
-
-
 -- Completion Setup
 local cmp = require('cmp')
 

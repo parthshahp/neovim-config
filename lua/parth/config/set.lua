@@ -28,7 +28,6 @@ o.cursorlineopt = "both"
 o.ignorecase = true
 o.smartcase = true
 
-o.termguicolors = true
 o.updatetime = 250
 
 -- Add mason.nvim binaries to path
