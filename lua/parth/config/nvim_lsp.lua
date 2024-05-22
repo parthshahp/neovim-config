@@ -1,13 +1,12 @@
--- note: diagnostics are not exclusive to lsp servers
--- so these can be global keybindings
-vim.keymap.set('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<cr>')
+-- LSP Setup
+vim.keymap.set('n', '<leader>d', '<cmd>lua vim.diagnostic.open_float()<cr>')
 vim.keymap.set('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<cr>')
-vim.keymap.set('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<cr>') 
+vim.keymap.set('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<cr>')
 
 vim.api.nvim_create_autocmd('LspAttach', {
   desc = 'LSP actions',
   callback = function(event)
-    local opts = {buffer = event.buf}
+    local opts = { buffer = event.buf }
 
     -- these will be buffer-local keybindings
     -- because they only work if you have an active language server
@@ -19,9 +18,10 @@ vim.api.nvim_create_autocmd('LspAttach', {
     vim.keymap.set('n', 'go', '<cmd>lua vim.lsp.buf.type_definition()<cr>', opts)
     vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', opts)
     vim.keymap.set('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
-    vim.keymap.set('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
-    vim.keymap.set({'n', 'x'}, '<F3>', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', opts)
-    vim.keymap.set('n', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
+    vim.keymap.set('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
+    vim.keymap.set({ 'n', 'x' }, '<leader>fm', '<cmd>lua vim.lsp.buf.format({async = true})<cr>',
+      { buffer = event.buf, desc = "Format" })
+    vim.keymap.set('n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
   end
 })
 
@@ -33,29 +33,40 @@ local default_setup = function(server)
   })
 end
 
+-- Mason setup
 require('mason').setup({})
 require('mason-lspconfig').setup({
   ensure_installed = {
-    'gopls',
-    'pyright',
-    -- 'htmx',
-    'html',
-    'tsserver',
+    -- "lua-language-server",
+    -- "stylua",
+    -- "prettierd",
+    -- "gopls",
+    -- "pyright",
+    -- "isort",
+    -- "html-lsp",
+    -- "css-lsp",
+    -- "tailwindcss-language-server",
+    -- "typescript-language-server",
+    -- "eslint-lsp",
+    -- "svelte",
+    -- "svelte-language-server",
   },
   handlers = {
     default_setup,
   },
 })
 
+
+-- Completion Setup
 local cmp = require('cmp')
 
 cmp.setup({
   sources = {
-    {name = 'nvim_lsp'},
+    { name = 'nvim_lsp' },
   },
   mapping = cmp.mapping.preset.insert({
     -- Enter key confirms completion item
-    ['<CR>'] = cmp.mapping.confirm({select = false}),
+    ['<CR>'] = cmp.mapping.confirm({ select = false }),
 
     -- Ctrl + space triggers completion menu
     ['<C-Space>'] = cmp.mapping.complete(),

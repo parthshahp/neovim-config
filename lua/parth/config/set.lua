@@ -1,25 +1,36 @@
+local o = vim.o
+
 vim.g.mapleader = " "
-vim.opt.mouse = "a"
-vim.opt.nu = true
-vim.opt.relativenumber = true
+o.mouse = "a"
 
-vim.opt.tabstop = 4
-vim.opt.softtabstop = 4
-vim.opt.shiftwidth = 4
-vim.opt.expandtab = true
-vim.opt.smartindent = true
+o.nu = true
+o.numberwidth = 2
+o.ruler = true
+o.relativenumber = true
 
-vim.opt.wrap = false
+o.tabstop = 2
+o.softtabstop = 2
+o.shiftwidth = 2
+o.expandtab = true
+o.smartindent = true
 
-vim.opt.hlsearch = false
-vim.opt.incsearch = true
-vim.opt.inccommand = "split"
+o.wrap = false
 
-vim.opt.scrolloff = 10
-vim.opt.signcolumn = "yes"
-vim.opt.cursorline = true
+o.hlsearch = true
+o.incsearch = true
+o.inccommand = "split"
 
-vim.opt.ignorecase = true
-vim.opt.smartcase = true
+o.scrolloff = 14
+o.signcolumn = "yes"
+o.cursorline = true
+o.cursorlineopt = "both"
 
-vim.opt.termguicolors = true
+o.ignorecase = true
+o.smartcase = true
+
+o.termguicolors = true
+o.updatetime = 250
+
+-- Add mason.nvim binaries to path
+local is_windows = vim.fn.has("win32") ~= 0
+vim.env.PATH = vim.fn.stdpath "data" .. "/mason/bin" .. (is_windows and ";" or ":") .. vim.env.PATH

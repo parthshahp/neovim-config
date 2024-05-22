@@ -1,55 +1,62 @@
-vim.keymap.set("n", "<leader>pv", vim.cmd.Ex, { desc = "Open NetRW" })
+local map = vim.keymap.set
+
+map("n", "<leader>pv", vim.cmd.Ex, { desc = "Open NetRW" })
+--map("n", "<C-n>", vim.cmd.Ex, { desc = "Open NetRW" })
+map("i", "<C-c>", "<ESC>")
+map("n", "<ESC>", "<cmd>noh<CR>")
+map("n", "<C-c>", "<cmd>%y+<CR>", { desc = "file copy whole" })
 
 -- Move highlighted lines around
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+map("v", "J", ":m '>+1<CR>gv=gv")
+map("v", "K", ":m '<-2<CR>gv=gv")
 
 -- Don't move cursors to end of line when pressing J
-vim.keymap.set("n", "J", "mzJ`z")
+map("n", "J", "mzJ`z")
 
 -- Keep cursor in middle when movingremap
-vim.keymap.set("n", "<C-d>", "<C-d>zz")
-vim.keymap.set("n", "<C-u>", "<C-u>zz")
-vim.keymap.set("n", "n", "nzzzv")
-vim.keymap.set("n", "N", "Nzzzv")
+map("n", "<C-d>", "<C-d>zz")
+map("n", "<C-u>", "<C-u>zz")
+map("n", "n", "nzzzv")
+map("n", "N", "Nzzzv")
 
 -- Delete to void buffer
-vim.keymap.set("x", "<leader>p", '"_dP', { desc = "Overwrite to void buffer" })
-vim.keymap.set("n", "<leader>d", '"_d', { desc = "Delete to void buffer" })
-vim.keymap.set("v", "<leader>d", '"_d', { desc = "Delete to void buffer" })
+-- map("x", "<leader>p", '"_dP', { desc = "Overwrite to void buffer" })
+-- map("n", "<leader>d", '"_d', { desc = "Delete to void buffer" })
+-- map("v", "<leader>d", '"_d', { desc = "Delete to void buffer" })
+
+-- Jump in quickfix list
+map("n", "<C-j>", ":cnext<CR>")
+map("n", "<C-k>", ":cprev<CR>")
 
 -- System clipboard
-vim.keymap.set("n", "<leader>y", '"+y')
-vim.keymap.set("v", "<leader>y", '"+y')
-vim.keymap.set("n", "<leader>Y", '"+Y')
+map("n", "<leader>y", '"+y')
+map("v", "<leader>y", '"+y')
+map("n", "<leader>Y", '"+Y')
 
--- Window key
--- vim.api.nvim_set_keymap('n', '<leader>v', ':vsplit<CR>', { noremap = true })
--- vim.api.nvim_set_keymap('n', '<leader>h', ':split<CR>', { noremap = true })
--- vim.keymap.set('n', '<M-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
--- vim.keymap.set('n', '<M-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
--- vim.keymap.set('n', '<M-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
--- vim.keymap.set('n', '<M-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
+map("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
-vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
-
+-- Highlight on Yank
 vim.api.nvim_create_autocmd("TextYankPost", {
-	desc = "Highlight when yanking (copying) text",
-	group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
-	callback = function()
-		vim.highlight.on_yank()
-	end,
+  desc = "Highlight when yanking (copying) text",
+  group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
+  callback = function()
+    vim.highlight.on_yank()
+  end,
 })
 
--- vim.api.nvim_set_keymap('n', '<leader>do', '<cmd>lua vim.diagnostic.open_float()<CR>', { desc = 'Open Diagnostic Float', noremap = true, silent = true })
-vim.keymap.set("n", "<leader>gs", vim.cmd.Git, { desc = "Open Git Fugitive Window" })
-vim.keymap.set("n", "<leader>gp", ":Gitsigns preview_hunk<CR>", { desc = "Open Git Preview Hunk" })
-vim.keymap.set({ "n", "v" }, "<leader>ghr", ":Gitsigns reset_hunk<CR>", { desc = "Reset Hunk" })
+map("n", "<leader>gp", ":Gitsigns preview_hunk<CR>", { desc = "Open Git Preview Hunk" })
+map({ "n", "v" }, "<leader>ghr", ":Gitsigns reset_hunk<CR>", { desc = "Reset Hunk" })
 
 -- Telescope
 local builtin = require("telescope.builtin")
-vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Find File" })
-vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Live Grep" })
-vim.keymap.set("n", "<leader>u", "<cmd>Telescope undo<cr>")
-vim.keymap.set("n", "<leader>fo", builtin.oldfiles, { desc = "Old Files" })
-vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Buffers" })
+map("n", "<leader>ff", builtin.find_files, { desc = "Find File" })
+map("n", "<leader>fw", builtin.live_grep, { desc = "Live Grep" })
+map("n", "<leader>fo", builtin.oldfiles, { desc = "Old Files" })
+map("n", "<leader>fb", builtin.buffers, { desc = "Buffers" })
+map("n", "<leader>fd", builtin.diagnostics, { desc = "Diagnostics" })
+map("n", "<leader>fg", builtin.git_status, { desc = "Git Status" })
+map("n", "<leader>fh", builtin.help_tags, { desc = "Help" })
+map("n", "<leader>fz", builtin.current_buffer_fuzzy_find, { desc = "Current Buffer Find" })
+map("n", "<leader>fr", function()
+  require("telescope.builtin").lsp_references()
+end, { desc = "Find References" })
