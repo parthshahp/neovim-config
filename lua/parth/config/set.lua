@@ -23,7 +23,7 @@ o.incsearch = true
 o.scrolloff = 14
 o.signcolumn = "yes"
 o.cursorline = true
-o.cursorlineopt = "both"
+o.cursorlineopt = "number"
 
 o.ignorecase = true
 o.smartcase = true
@@ -32,4 +32,4 @@ o.updatetime = 250
 
 -- Add mason.nvim binaries to path
 local is_windows = vim.fn.has("win32") ~= 0
-vim.env.PATH = vim.fn.stdpath "data" .. "/mason/bin" .. (is_windows and ";" or ":") .. vim.env.PATH
+vim.env.PATH = vim.fn.stdpath("data") .. "/mason/bin" .. (is_windows and ";" or ":") .. vim.env.PATH
