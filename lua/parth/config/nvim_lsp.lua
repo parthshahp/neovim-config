@@ -38,7 +38,7 @@ require('mason-lspconfig').setup({
   ensure_installed = {
     'gopls',
     'pyright',
-    'htmx',
+    -- 'htmx',
     'html',
     'tsserver',
   },
