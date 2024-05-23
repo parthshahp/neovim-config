@@ -13,7 +13,6 @@ return {
 				"html-lsp",
 				"css-lsp",
 				"tailwindcss-language-server",
-				"svelte",
 				"svelte-language-server",
 			},
 		},
