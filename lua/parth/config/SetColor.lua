@@ -27,11 +27,14 @@ end
 function Neofusion()
 	vim.o.background = "dark"
 	require("neofusion").setup({
-		transparent_mode = true,
+		transparent_mode = false,
 	})
 	vim.cmd.colorscheme("neofusion")
 end
 
--- GruvboxMaterial()
-Catppuccin()
--- Neofusion()
+if vim.g.neovide then
+	Neofusion()
+else
+	-- GruvboxMaterial()
+	Catppuccin()
+end

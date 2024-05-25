@@ -41,3 +41,13 @@ o.updatetime = 250
 -- Add mason.nvim binaries to path
 local is_windows = vim.fn.has("win32") ~= 0
 vim.env.PATH = vim.fn.stdpath("data") .. "/mason/bin" .. (is_windows and ";" or ":") .. vim.env.PATH
+
+-- Neovide
+if g.neovide then
+	o.guifont = "JetBrainsMono Nerd Font:h18"
+	g.neovide_padding_top = 8
+	g.neovide_padding_bottom = 8
+	g.neovide_padding_right = 8
+	g.neovide_padding_left = 8
+	g.neovide_cursor_animation_length = 0.10
+end
