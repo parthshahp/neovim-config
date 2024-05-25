@@ -11,6 +11,11 @@ end
 
 function Catppuccin(flavour)
 	flavour = flavour or "mocha"
+	if flavour ~= "latte" then
+		vim.o.background = "dark"
+	else
+		vim.o.background = "light"
+	end
 	require("catppuccin").setup({
 		flavour = flavour,
 	})
@@ -19,5 +24,14 @@ function Catppuccin(flavour)
 	vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 end
 
+function Neofusion()
+	vim.o.background = "dark"
+	require("neofusion").setup({
+		transparent_mode = true,
+	})
+	vim.cmd.colorscheme("neofusion")
+end
+
 -- GruvboxMaterial()
 Catppuccin()
+-- Neofusion()

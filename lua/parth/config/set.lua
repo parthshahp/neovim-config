@@ -13,6 +13,7 @@ o.mouse = "a"
 o.nu = true
 o.numberwidth = 2
 o.ruler = false
+o.showmode = false
 o.relativenumber = true
 
 o.tabstop = 2
