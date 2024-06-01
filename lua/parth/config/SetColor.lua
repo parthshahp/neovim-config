@@ -1,12 +1,17 @@
-function GruvboxMaterial(color)
-	vim.o.background = "dark"
-	vim.g.gruvbox_material_foreground = "original"
-	vim.g.gruvbox_material_background = "hard"
+function GruvboxMaterial(theme)
+	if theme == "light" then
+		vim.o.background = "light"
+		vim.g.gruvbox_material_background = "soft"
+		vim.g.gruvbox_material_foreground = "original"
+	else
+		vim.o.background = "dark"
+		vim.g.gruvbox_material_foreground = "original"
+		vim.g.gruvbox_material_background = "hard"
+	end
 
-	color = "gruvbox-material"
-	vim.cmd.colorscheme(color)
-	-- vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-	-- vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+	vim.cmd.colorscheme("gruvbox-material")
+	vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+	vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 end
 
 function Catppuccin(flavour)
@@ -20,8 +25,8 @@ function Catppuccin(flavour)
 		flavour = flavour,
 	})
 	vim.cmd.colorscheme("catppuccin")
-	-- vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-	-- vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+	vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+	vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 end
 
 function Neofusion()
@@ -32,6 +37,9 @@ function Neofusion()
 	vim.cmd.colorscheme("neofusion")
 end
 
--- Neofusion()
--- GruvboxMaterial()
-Catppuccin()
+-- Neofusion(false)
+GruvboxMaterial("light")
+-- Catppuccin("latte")
+
+vim.cmd("command Light silent lua GruvboxMaterial('light')")
+vim.cmd("command Dark silent lua GruvboxMaterial('dark')")

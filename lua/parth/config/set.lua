@@ -3,8 +3,8 @@ local g = vim.g
 
 -- Global
 g.mapleader = " "
-g.netrw_liststyle = 3
-g.netrw_winsize = 20
+-- g.netrw_liststyle = 3
+-- g.netrw_winsize = 20
 g.netrw_banner = 0
 
 -- Options

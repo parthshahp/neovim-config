@@ -8,8 +8,6 @@ M.on_attach = function(client, bufnr)
 	end
 
 	map("n", "<leader>d", vim.diagnostic.open_float, opts("Open Diagnostic Float"))
-	-- map('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<cr>')
-	-- map('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<cr>')
 	map("n", "K", vim.lsp.buf.hover, opts("Hover"))
 	map("n", "gd", vim.lsp.buf.definition, opts("Definition"))
 	map("n", "gD", vim.lsp.buf.declaration, opts("Declaration"))
@@ -34,12 +32,23 @@ M.defaults = function()
 		"eslint",
 		"gopls",
 		"pyright",
+		"templ",
 	}
+
 	for _, lsp in ipairs(servers) do
-		lspconfig[lsp].setup({
-			on_attach = M.on_attach,
-			capabilities = vim.lsp.protocol.make_client_capabilities(),
-		})
+		if lsp == "tailwindcss" then
+			lspconfig[lsp].setup({
+				on_attach = M.on_attach,
+				capabilities = vim.lsp.protocol.make_client_capabilities(),
+				filetypes = { "html", "templ", "svelte", "javascript" },
+				init_options = { userLanguages = { templ = "html" } },
+			})
+		else
+			lspconfig[lsp].setup({
+				on_attach = M.on_attach,
+				capabilities = vim.lsp.protocol.make_client_capabilities(),
+			})
+		end
 	end
 end
 
