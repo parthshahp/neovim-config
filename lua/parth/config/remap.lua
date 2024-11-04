@@ -20,9 +20,9 @@ map("n", "n", "nzzzv")
 map("n", "N", "Nzzzv")
 
 -- Delete to void buffer
--- map("x", "<leader>p", '"_dP', { desc = "Overwrite to void buffer" })
--- map("n", "<leader>d", '"_d', { desc = "Delete to void buffer" })
--- map("v", "<leader>d", '"_d', { desc = "Delete to void buffer" })
+map("x", "<leader>p", '"_dP', { desc = "Overwrite to void buffer" })
+map("n", "<leader>d", '"_d', { desc = "Delete to void buffer" })
+map("v", "<leader>d", '"_d', { desc = "Delete to void buffer" })
 
 -- Jump in quickfix list
 map("n", "<C-j>", ":cnext<CR>")
@@ -37,11 +37,11 @@ map("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
 -- Highlight on Yank
 vim.api.nvim_create_autocmd("TextYankPost", {
-  desc = "Highlight when yanking (copying) text",
-  group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
-  callback = function()
-    vim.highlight.on_yank()
-  end,
+	desc = "Highlight when yanking (copying) text",
+	group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
+	callback = function()
+		vim.highlight.on_yank()
+	end,
 })
 
 map("n", "<leader>gp", ":Gitsigns preview_hunk<CR>", { desc = "Open Git Preview Hunk" })
@@ -58,7 +58,7 @@ map("n", "<leader>fg", builtin.git_status, { desc = "Git Status" })
 map("n", "<leader>fh", builtin.help_tags, { desc = "Help" })
 map("n", "<leader>fz", builtin.current_buffer_fuzzy_find, { desc = "Current Buffer Find" })
 map("n", "<leader>fr", function()
-  require("telescope.builtin").lsp_references()
+	require("telescope.builtin").lsp_references()
 end, { desc = "Find References" })
 
 map("n", "<leader>th", "<cmd>Themery<CR>", { desc = "Themery" })
