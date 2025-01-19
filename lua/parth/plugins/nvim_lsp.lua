@@ -14,6 +14,7 @@ return {
 				"css-lsp",
 				"tailwindcss-language-server",
 				"svelte-language-server",
+				"zls",
 			},
 		},
 		config = function(_, opts)

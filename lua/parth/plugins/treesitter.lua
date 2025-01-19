@@ -18,9 +18,12 @@ return {
 					"python",
 					"go",
 					"javascript",
+					"typescript",
 					"html",
 					"css",
 					"templ",
+					"svelte",
+					"zig",
 				},
 			})
 		end,

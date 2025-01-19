@@ -26,13 +26,13 @@ M.defaults = function()
 		"lua_ls",
 		"html",
 		"cssls",
-		"tsserver",
+		"ts_ls",
 		"tailwindcss",
 		"svelte",
-		-- "eslint",
 		"gopls",
 		"pyright",
 		"templ",
+		"zls",
 	}
 
 	for _, lsp in ipairs(servers) do
