@@ -40,7 +40,15 @@ M.defaults = function()
 			lspconfig[lsp].setup({
 				on_attach = M.on_attach,
 				capabilities = vim.lsp.protocol.make_client_capabilities(),
-				filetypes = { "html", "templ", "svelte", "javascript" },
+				filetypes = {
+					"html",
+					"templ",
+					"svelte",
+					"javascript",
+					"typescript",
+					"javascriptreact",
+					"typescriptreact",
+				},
 				init_options = { userLanguages = { templ = "html" } },
 			})
 		else

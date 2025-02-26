@@ -1,7 +1,7 @@
 local map = vim.keymap.set
 
-map("n", "<leader>pv", vim.cmd.Ex, { desc = "Open NetRW" })
---map("n", "<C-n>", vim.cmd.Ex, { desc = "Open NetRW" })
+-- map("n", "<leader>pv", vim.cmd.Ex, { desc = "Open NetRW" })
+map("n", "<C-b>", vim.cmd.Ex, { desc = "Open NetRW" })
 map("i", "<C-c>", "<ESC>")
 map("n", "<ESC>", "<cmd>noh<CR>")
 map("n", "<C-c>", "<cmd>%y+<CR>", { desc = "file copy whole" })
