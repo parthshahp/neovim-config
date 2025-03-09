@@ -4,17 +4,16 @@ return {
 		"williamboman/mason.nvim",
 		opts = {
 			ensure_installed = {
+				"eslint-lsp",
+				"ts_ls",
 				"stylua",
 				"prettierd",
-				"isort",
 				"lua-language-server",
 				"gopls",
-				"pyright",
 				"html-lsp",
 				"css-lsp",
 				"tailwindcss-language-server",
-				"svelte-language-server",
-				"zls",
+				"typescript-language-server",
 			},
 		},
 		config = function(_, opts)
@@ -42,6 +41,17 @@ return {
 		"hrsh7th/cmp-nvim-lsp",
 	},
 	{
+		"folke/lazydev.nvim",
+		ft = "lua", -- only load on lua files
+		opts = {
+			library = {
+				-- See the configuration section for more details
+				-- Load luvit types when the `vim.uv` word is found
+				{ path = "${3rd}/luv/library", words = { "vim%.uv" } },
+			},
+		},
+	},
+	{
 		"hrsh7th/nvim-cmp",
 		event = "InsertEnter",
 		config = function(_, opts)
@@ -49,6 +59,10 @@ return {
 			opts.sources = {
 				{ name = "nvim_lsp" },
 			}
+			table.insert(opts.sources, {
+				name = "lazydev",
+				group_index = 0,
+			})
 			opts.mapping = cmp.mapping.preset.insert({
 				["<CR>"] = cmp.mapping.confirm({ select = true }),
 				["<C-Space>"] = cmp.mapping.complete(),

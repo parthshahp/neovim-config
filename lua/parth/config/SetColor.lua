@@ -29,17 +29,5 @@ function Catppuccin(flavour)
 	-- vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 end
 
-function Neofusion()
-	vim.o.background = "dark"
-	require("neofusion").setup({
-		transparent_mode = false,
-	})
-	vim.cmd.colorscheme("neofusion")
-end
-
--- Neofusion(false)
-GruvboxMaterial("dark")
--- Catppuccin("latte")
-
-vim.cmd("command Light silent lua GruvboxMaterial('light')")
-vim.cmd("command Dark silent lua GruvboxMaterial('dark')")
+-- vim.cmd("command Light silent lua GruvboxMaterial('light')")
+-- vim.cmd("command Dark silent lua GruvboxMaterial('dark')")

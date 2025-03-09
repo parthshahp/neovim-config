@@ -15,7 +15,7 @@ M.on_attach = function(client, bufnr)
 	map("n", "go", vim.lsp.buf.type_definition, opts("Type Definition"))
 	map("n", "gr", vim.lsp.buf.references, opts("References"))
 	map("n", "gs", vim.lsp.buf.signature_help, opts("Signature Help"))
-	map("n", "<leader>rn", vim.lsp.buf.rename, opts("Rename"))
+	map("n", "<leader>r", vim.lsp.buf.rename, opts("Rename"))
 	map({ "n", "x" }, "<leader>fm", "<cmd>lua vim.lsp.buf.format({async = true})<cr>", opts("Format"))
 	map("n", "<leader>ca", vim.lsp.buf.code_action, opts("Code Action"))
 end
@@ -28,35 +28,15 @@ M.defaults = function()
 		"cssls",
 		"ts_ls",
 		"tailwindcss",
-		"svelte",
+		"eslint",
 		"gopls",
-		"pyright",
-		"templ",
-		"zls",
 	}
 
 	for _, lsp in ipairs(servers) do
-		if lsp == "tailwindcss" then
-			lspconfig[lsp].setup({
-				on_attach = M.on_attach,
-				capabilities = vim.lsp.protocol.make_client_capabilities(),
-				filetypes = {
-					"html",
-					"templ",
-					"svelte",
-					"javascript",
-					"typescript",
-					"javascriptreact",
-					"typescriptreact",
-				},
-				init_options = { userLanguages = { templ = "html" } },
-			})
-		else
-			lspconfig[lsp].setup({
-				on_attach = M.on_attach,
-				capabilities = vim.lsp.protocol.make_client_capabilities(),
-			})
-		end
+		lspconfig[lsp].setup({
+			on_attach = M.on_attach,
+			capabilities = vim.lsp.protocol.make_client_capabilities(),
+		})
 	end
 end
 
