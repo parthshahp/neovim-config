@@ -66,3 +66,7 @@ map("n", "gs", builtin.lsp_document_symbols, { desc = "Symbol in Document" })
 map("n", "gS", builtin.lsp_workspace_symbols, { desc = "Symbol in Workspace" })
 map("n", "gr", builtin.lsp_references, { desc = "References" })
 map("n", "<leader>th", "<cmd>Themery<CR>", { desc = "Themery" })
+
+vim.keymap.set("n", "<leader>qs", function()
+	require("persistence").load()
+end)
