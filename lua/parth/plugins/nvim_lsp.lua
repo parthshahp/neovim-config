@@ -4,16 +4,14 @@ return {
 		"williamboman/mason.nvim",
 		opts = {
 			ensure_installed = {
-				"eslint-lsp",
-				"ts_ls",
 				"stylua",
-				"prettierd",
 				"lua-language-server",
-				"gopls",
 				"html-lsp",
 				"css-lsp",
 				"tailwindcss-language-server",
 				"typescript-language-server",
+				"eslint-lsp",
+				"prettierd",
 			},
 		},
 		config = function(_, opts)

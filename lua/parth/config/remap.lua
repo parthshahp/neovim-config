@@ -1,7 +1,11 @@
 local map = vim.keymap.set
 
--- map("n", "<leader>pv", vim.cmd.Ex, { desc = "Open NetRW" })
-map("n", "<C-b>", vim.cmd.Ex, { desc = "Open NetRW" })
+-- Delete global default keymaps
+vim.keymap.del("n", "grn")
+vim.keymap.del("n", "gra")
+vim.keymap.del("n", "gri")
+
+-- map("n", "<C-b>", vim.cmd.Ex, { desc = "Open NetRW" })
 map("i", "<C-c>", "<ESC>")
 map("n", "<ESC>", "<cmd>noh<CR>")
 map("n", "<C-c>", "<cmd>%y+<CR>", { desc = "file copy whole" })
@@ -49,16 +53,16 @@ map({ "n", "v" }, "<leader>ghr", ":Gitsigns reset_hunk<CR>", { desc = "Reset Hun
 
 -- Telescope
 local builtin = require("telescope.builtin")
-map("n", "<leader>ff", builtin.find_files, { desc = "Find File" })
+map("n", "<leader>fa", builtin.find_files, { desc = "All Files" })
+map("n", "<leader>ff", builtin.git_files, { desc = "Git Files" })
 map("n", "<leader>fw", builtin.live_grep, { desc = "Live Grep" })
 map("n", "<leader>fo", builtin.oldfiles, { desc = "Old Files" })
 map("n", "<leader>fb", builtin.buffers, { desc = "Buffers" })
 map("n", "<leader>fd", builtin.diagnostics, { desc = "Diagnostics" })
 map("n", "<leader>fg", builtin.git_status, { desc = "Git Status" })
-map("n", "<leader>fh", builtin.help_tags, { desc = "Help" })
 map("n", "<leader>fz", builtin.current_buffer_fuzzy_find, { desc = "Current Buffer Find" })
-map("n", "<leader>fr", function()
-	require("telescope.builtin").lsp_references()
-end, { desc = "Find References" })
-
+map("n", "<leader>fq", builtin.quickfix, { desc = "Quickfix" })
+map("n", "gs", builtin.lsp_document_symbols, { desc = "Symbol in Document" })
+map("n", "gS", builtin.lsp_workspace_symbols, { desc = "Symbol in Workspace" })
+map("n", "gr", builtin.lsp_references, { desc = "References" })
 map("n", "<leader>th", "<cmd>Themery<CR>", { desc = "Themery" })

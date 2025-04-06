@@ -11,13 +11,10 @@ M.on_attach = function(client, bufnr)
 	map("n", "K", vim.lsp.buf.hover, opts("Hover"))
 	map("n", "gd", vim.lsp.buf.definition, opts("Definition"))
 	map("n", "gD", vim.lsp.buf.declaration, opts("Declaration"))
-	map("n", "gi", vim.lsp.buf.implementation, opts("Implementation"))
+	map("n", "gI", vim.lsp.buf.implementation, opts("Implementation"))
+	map("n", "cd", vim.lsp.buf.rename, opts("Rename"))
 	map("n", "go", vim.lsp.buf.type_definition, opts("Type Definition"))
-	map("n", "gr", vim.lsp.buf.references, opts("References"))
-	map("n", "gs", vim.lsp.buf.signature_help, opts("Signature Help"))
-	map("n", "<leader>r", vim.lsp.buf.rename, opts("Rename"))
-	map({ "n", "x" }, "<leader>fm", "<cmd>lua vim.lsp.buf.format({async = true})<cr>", opts("Format"))
-	map("n", "<leader>ca", vim.lsp.buf.code_action, opts("Code Action"))
+	map("n", "g.", vim.lsp.buf.code_action, opts("Code Action"))
 end
 
 M.defaults = function()
@@ -29,7 +26,6 @@ M.defaults = function()
 		"ts_ls",
 		"tailwindcss",
 		"eslint",
-		"gopls",
 	}
 
 	for _, lsp in ipairs(servers) do
