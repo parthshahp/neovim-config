@@ -21,6 +21,7 @@ return {
 					"tsx",
 					"html",
 					"css",
+					"rust",
 				},
 			})
 		end,

@@ -12,6 +12,8 @@ return {
 				"typescript-language-server",
 				"eslint-lsp",
 				"prettierd",
+				"rust-analyzer",
+				"svelte-language-server",
 			},
 		},
 		config = function(_, opts)

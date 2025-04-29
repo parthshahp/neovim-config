@@ -26,6 +26,9 @@ M.defaults = function()
 		"ts_ls",
 		"tailwindcss",
 		"eslint",
+		"rust_analyzer",
+		"svelte",
+		"astro",
 	}
 
 	for _, lsp in ipairs(servers) do
