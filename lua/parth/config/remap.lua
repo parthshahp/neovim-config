@@ -33,9 +33,9 @@ map("n", "<C-j>", ":cnext<CR>")
 map("n", "<C-k>", ":cprev<CR>")
 
 -- System clipboard
-map("n", "<leader>y", '"+y')
-map("v", "<leader>y", '"+y')
-map("n", "<leader>Y", '"+Y')
+-- map("n", "<leader>y", '"+y')
+-- map("v", "<leader>y", '"+y')
+-- map("n", "<leader>Y", '"+Y')
 
 map("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
@@ -47,26 +47,3 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 		vim.highlight.on_yank()
 	end,
 })
-
-map("n", "<leader>gp", ":Gitsigns preview_hunk<CR>", { desc = "Open Git Preview Hunk" })
-map({ "n", "v" }, "<leader>ghr", ":Gitsigns reset_hunk<CR>", { desc = "Reset Hunk" })
-
--- Telescope
-local builtin = require("telescope.builtin")
-map("n", "<leader>fa", builtin.find_files, { desc = "All Files" })
-map("n", "<leader>ff", builtin.git_files, { desc = "Git Files" })
-map("n", "<leader>fw", builtin.live_grep, { desc = "Live Grep" })
-map("n", "<leader>fo", builtin.oldfiles, { desc = "Old Files" })
-map("n", "<leader>fb", builtin.buffers, { desc = "Buffers" })
-map("n", "<leader>fd", builtin.diagnostics, { desc = "Diagnostics" })
-map("n", "<leader>fg", builtin.git_status, { desc = "Git Status" })
-map("n", "<leader>fz", builtin.current_buffer_fuzzy_find, { desc = "Current Buffer Find" })
-map("n", "<leader>fq", builtin.quickfix, { desc = "Quickfix" })
-map("n", "gs", builtin.lsp_document_symbols, { desc = "Symbol in Document" })
-map("n", "gS", builtin.lsp_workspace_symbols, { desc = "Symbol in Workspace" })
-map("n", "gr", builtin.lsp_references, { desc = "References" })
-map("n", "<leader>th", "<cmd>Themery<CR>", { desc = "Themery" })
-
-vim.keymap.set("n", "<leader>qs", function()
-	require("persistence").load()
-end)

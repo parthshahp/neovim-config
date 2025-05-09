@@ -4,4 +4,7 @@ return {
 	opts = {
 		-- add any custom options here
 	},
+	vim.keymap.set("n", "<leader>qs", function()
+		require("persistence").load()
+	end),
 }

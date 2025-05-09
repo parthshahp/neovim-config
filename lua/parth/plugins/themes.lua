@@ -1,5 +1,9 @@
 return {
 	{
+		"navarasu/onedark.nvim",
+		lazy = true,
+	},
+	{
 		"EdenEast/nightfox.nvim",
 		lazy = true,
 	},
@@ -28,6 +32,17 @@ return {
 			require("themery").setup({
 				themes = {
 					{
+						name = "OneDark",
+						colorscheme = "onedark",
+						before = [[
+              vim.o.background="dark"
+            ]],
+						after = [[ 
+              require("onedark").setup({ style = "warmer"})
+              require("onedark").load()
+            ]],
+					},
+					{
 						name = "Dayfox",
 						colorscheme = "dayfox",
 					},
@@ -36,7 +51,7 @@ return {
 						colorscheme = "nordfox",
 					},
 					{
-						name = "Rose Pine",
+						name = "Rose Pine Light",
 						colorscheme = "rose-pine",
 						after = [[
               require("rose-pine").setup({ variant = "dawn" })
@@ -45,6 +60,17 @@ return {
 					{
 						name = "Everforest",
 						colorscheme = "everforest",
+					},
+					{
+						name = "Rose Pine Dark",
+						colorscheme = "rose-pine",
+						before = [[
+              vim.o.background="dark"
+            ]],
+						after = [[
+              vim.o.background="dark"
+              require("rose-pine").setup({ variant = "main" })
+            ]],
 					},
 					{
 						name = "Gruvbox Material",
@@ -66,6 +92,7 @@ return {
 				},
 				globalBefore = [[ vim.o.background = "light" ]],
 			})
+			vim.keymap.set("n", "<leader>th", "<cmd>Themery<CR>", { desc = "Themery" })
 		end,
 	},
 }

@@ -15,6 +15,8 @@ return {
 					untracked = { text = "│" },
 				},
 			})
+			vim.keymap.set("n", "<leader>gp", ":Gitsigns preview_hunk<CR>", { desc = "Open Git Preview Hunk" })
+			vim.keymap.set({ "n", "v" }, "<leader>ghr", ":Gitsigns reset_hunk<CR>", { desc = "Reset Hunk" })
 		end,
 	},
 }

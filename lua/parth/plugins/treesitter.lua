@@ -8,6 +8,7 @@ return {
 			require("nvim-treesitter.configs").setup({
 				highlight = { enable = true, use_languagetree = true },
 				indent = { enable = true },
+				sync_install = false,
 				ensure_installed = {
 					"bash",
 					"c",

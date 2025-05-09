@@ -37,6 +37,7 @@ o.ignorecase = true
 o.smartcase = true
 
 o.updatetime = 250
+o.clipboard = "unnamedplus"
 
 -- Add mason.nvim binaries to path
 local is_windows = vim.fn.has("win32") ~= 0
