@@ -1,24 +1,21 @@
 return {
 	--Mason
+  {
+    "mason-org/mason-lspconfig.nvim",
+  },
 	{
-		"williamboman/mason.nvim",
+		"mason-org/mason.nvim",
 		opts = {
-			ensure_installed = {
-				"stylua",
-				"lua-language-server",
-				"html-lsp",
-				"css-lsp",
-				"tailwindcss-language-server",
-				"typescript-language-server",
-				"eslint-lsp",
-				"prettierd",
-				"rust-analyzer",
-				"svelte-language-server",
-			},
+      ui = {
+        icons = {
+          package_installed = "✓",
+          package_pending = "➜",
+          package_uninstalled = "✗"
+        }
+      }
 		},
 		config = function(_, opts)
 			require("mason").setup(opts)
-
 			vim.api.nvim_create_user_command("MasonInstallAll", function()
 				if opts.ensure_installed and #opts.ensure_installed > 0 then
 					vim.cmd("MasonInstall " .. table.concat(opts.ensure_installed, " "))
@@ -26,20 +23,18 @@ return {
 			end, {})
 		end,
 	},
-	{
-		"williamboman/mason-lspconfig.nvim",
-	},
 	--LSP
 	{
-		"neovim/nvim-lspconfig",
-		config = function()
-			require("parth.config.nvim_lsp").defaults()
-		end,
+	"neovim/nvim-lspconfig",
+	config = function()
+    local capabilities = require("blink.cmp").get_lsp_capabilities()
+		require("mason").setup({
+			registries = { "github:crashdummyy/mason-registry", "github:mason-org/mason-registry" },
+		})
+		require("mason-lspconfig").setup()
+	end,
 	},
 	--Completion
-	{
-		"hrsh7th/cmp-nvim-lsp",
-	},
 	{
 		"folke/lazydev.nvim",
 		ft = "lua", -- only load on lua files
@@ -51,42 +46,38 @@ return {
 			},
 		},
 	},
-	{
-		"hrsh7th/nvim-cmp",
-		event = "InsertEnter",
-		config = function(_, opts)
-			local cmp = require("cmp")
-			opts.sources = {
-				{ name = "nvim_lsp" },
-			}
-			table.insert(opts.sources, {
-				name = "lazydev",
-				group_index = 0,
-			})
-			opts.mapping = cmp.mapping.preset.insert({
-				["<CR>"] = cmp.mapping.confirm({ select = true }),
-				["<C-Space>"] = cmp.mapping.complete(),
-			})
-			cmp.setup(opts)
-		end,
-		dependencies = {
-			{
-				"windwp/nvim-autopairs",
-				opts = {
-					fast_wrap = {},
-					disable_filetype = { "TelescopePrompt", "vim" },
-				},
-				config = function(_, opts)
-					require("nvim-autopairs").setup(opts)
-
-					-- setup cmp for autopairs
-					local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-					require("cmp").event:on("confirm_done", cmp_autopairs.on_confirm_done())
-				end,
-			},
-		},
-	},
-	{
-		"L3MON4D3/LuaSnip",
-	},
+  {
+    'saghen/blink.cmp',
+    dependencies = { 'rafamadriz/friendly-snippets' },
+    version = '1.*',
+    ---@module 'blink.cmp'
+    ---@type blink.cmp.Config
+    opts = {
+      keymap = { preset = 'enter' },
+      appearance = {
+        nerd_font_variant = 'mono'
+      },
+      completion = {
+        menu = { border = 'single' },
+        documentation = {auto_show = false, window = { border = 'single' } },
+      },
+      signature = { window = { border = 'single' } },
+      sources = {
+        default = { 'lsp', 'path', 'snippets', 'buffer' },
+      },
+      fuzzy = { implementation = "prefer_rust_with_warning" }
+    },
+    opts_extend = { "sources.default" },
+    sources = {
+      providers = {
+        path = {
+          opts = {
+            get_cwd = function(_)
+              return vim.fn.getcwd()
+            end,
+          },
+        },
+      },
+    },
+  }
 }

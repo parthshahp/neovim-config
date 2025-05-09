@@ -47,3 +47,25 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 		vim.highlight.on_yank()
 	end,
 })
+
+-- LSP
+vim.api.nvim_create_autocmd("LspAttach", {
+    callback = function(event)
+       local options = { buffer = event.buf }
+       vim.api.nvim_create_autocmd("BufWritePre", {
+         buffer = event.buf,
+         callback = function()
+           vim.lsp.buf.format {async = false, id = event.data.client_id }
+         end,
+       })
+
+        map("n", "<leader>d", vim.diagnostic.open_float, options)
+        map("n", "K", vim.lsp.buf.hover, options)
+        map("n", "gd", vim.lsp.buf.definition, options)
+        map("n", "gD", vim.lsp.buf.declaration, options)
+        map("n", "<leader>r", vim.lsp.buf.rename, options)
+        map("n", "gI", vim.lsp.buf.implementation, options)
+        map("n", "gt", vim.lsp.buf.type_definition, options)
+        map("n", "g.", vim.lsp.buf.code_action, options)
+    end,
+})
