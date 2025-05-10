@@ -14,6 +14,12 @@ map("n", "<C-c>", "<cmd>%y+<CR>", { desc = "file copy whole" })
 map("v", "J", ":m '>+1<CR>gv=gv")
 map("v", "K", ":m '<-2<CR>gv=gv")
 
+-- Move windows
+map("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus to the left window" })
+map("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right window" })
+map("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
+map("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
+
 -- Don't move cursors to end of line when pressing J
 map("n", "J", "mzJ`z")
 
@@ -27,10 +33,6 @@ map("n", "N", "Nzzzv")
 map("x", "<leader>p", '"_dP', { desc = "Overwrite to void buffer" })
 map("n", "<leader>d", '"_d', { desc = "Delete to void buffer" })
 map("v", "<leader>d", '"_d', { desc = "Delete to void buffer" })
-
--- Jump in quickfix list
-map("n", "<C-j>", ":cnext<CR>")
-map("n", "<C-k>", ":cprev<CR>")
 
 -- System clipboard
 -- map("n", "<leader>y", '"+y')
@@ -49,23 +51,3 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 })
 
 -- LSP
-vim.api.nvim_create_autocmd("LspAttach", {
-  callback = function(event)
-    local options = { buffer = event.buf }
-    vim.api.nvim_create_autocmd("BufWritePre", {
-      buffer = event.buf,
-      callback = function()
-        vim.lsp.buf.format { async = false, id = event.data.client_id }
-      end,
-    })
-
-    map("n", "<leader>d", vim.diagnostic.open_float, options)
-    map("n", "K", vim.lsp.buf.hover, options)
-    map("n", "gd", vim.lsp.buf.definition, options)
-    map("n", "gD", vim.lsp.buf.declaration, options)
-    map("n", "<leader>r", vim.lsp.buf.rename, options)
-    map("n", "gI", vim.lsp.buf.implementation, options)
-    map("n", "gt", vim.lsp.buf.type_definition, options)
-    map("n", "g.", vim.lsp.buf.code_action, options)
-  end,
-})

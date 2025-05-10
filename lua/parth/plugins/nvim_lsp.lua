@@ -2,7 +2,7 @@ return {
   --Mason
   {
     "mason-org/mason-lspconfig.nvim",
-    dependencies = { 'neovim/nvim-lspconfig' },
+    dependencies = { "neovim/nvim-lspconfig" },
     opts = {},
   },
   {
@@ -20,6 +20,34 @@ return {
   --LSP
   {
     "neovim/nvim-lspconfig",
+    dependencies = {
+      "mason-org/mason.nvim",
+      "saghen/blink.cmp",
+    },
+
+    config = function()
+      vim.api.nvim_create_autocmd("LspAttach", {
+        callback = function(event)
+          local options = { buffer = event.buf }
+          vim.api.nvim_create_autocmd("BufWritePre", {
+            buffer = event.buf,
+            callback = function()
+              vim.lsp.buf.format({ async = false, id = event.data.client_id })
+            end,
+          })
+
+          local map = vim.keymap.set
+          map("n", "<leader>d", vim.diagnostic.open_float, options)
+          map("n", "K", vim.lsp.buf.hover, options)
+          -- map("n", "gd", vim.lsp.buf.definition, options)
+          -- map("n", "gD", vim.lsp.buf.declaration, options)
+          map("n", "<leader>r", vim.lsp.buf.rename, options)
+          -- map("n", "gI", vim.lsp.buf.implementation, options)
+          -- map("n", "gt", vim.lsp.buf.type_definition, options)
+          map("n", "g.", vim.lsp.buf.code_action, options)
+        end,
+      })
+    end,
   },
   --Completion
   {
@@ -34,26 +62,26 @@ return {
     },
   },
   {
-    'saghen/blink.cmp',
-    dependencies = { 'rafamadriz/friendly-snippets' },
-    version = '1.*',
+    "saghen/blink.cmp",
+    dependencies = { "rafamadriz/friendly-snippets" },
+    version = "1.*",
     ---@module 'blink.cmp'
     ---@type blink.cmp.Config
     opts = {
-      keymap = { preset = 'enter' },
+      keymap = { preset = "enter" },
       appearance = {
-        nerd_font_variant = 'mono',
+        nerd_font_variant = "mono",
       },
       completion = {
-        menu = { border = 'single' },
-        documentation = { auto_show = true, window = { border = 'single' } },
+        menu = { border = "single" },
+        documentation = { auto_show = true, window = { border = "single" } },
       },
       sources = {
-        default = { 'lsp', 'path', 'snippets', 'buffer', 'lazydev' },
+        default = { "lsp", "path", "snippets", "buffer", "lazydev" },
         providers = {
           lazydev = {
-            name = 'LazyDev',
-            module = 'lazydev.integrations.blink',
+            name = "LazyDev",
+            module = "lazydev.integrations.blink",
             score_offset = 100, -- make lazydev completions top priority (see `:h blink.cmp`)
           },
         },
@@ -67,7 +95,7 @@ return {
       },
       fuzzy = { implementation = "prefer_rust_with_warning" },
       signature = {
-        window = { border = 'single' },
+        window = { border = "single" },
         enabled = true,
       },
     },

@@ -37,7 +37,14 @@ o.ignorecase = true
 o.smartcase = true
 
 o.updatetime = 250
-o.clipboard = "unnamedplus"
+o.timeoutlen = 300
+vim.schedule(function()
+  o.clipboard = "unnamedplus"
+end)
+
+o.splitright = true
+o.splitbelow = true
+o.confirm = true
 
 -- Add mason.nvim binaries to path
 local is_windows = vim.fn.has("win32") ~= 0

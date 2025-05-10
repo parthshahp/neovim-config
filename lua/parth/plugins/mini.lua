@@ -1,16 +1,16 @@
 return {
-	{
-		"echasnovski/mini.cursorword",
-		version = false,
-		config = function()
-			require("mini.cursorword").setup()
-		end,
-	},
-	{
-		"echasnovski/mini.indentscope",
-		version = false,
-		config = function()
-			require("mini.indentscope").setup()
-		end,
-	},
+  {
+    "echasnovski/mini.cursorword",
+    version = false,
+    config = function()
+      require("mini.cursorword").setup()
+    end,
+  },
+  {
+    "echasnovski/mini.surround",
+    version = false,
+    config = function()
+      require("mini.surround").setup()
+    end,
+  },
 }
