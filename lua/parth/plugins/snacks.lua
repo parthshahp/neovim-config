@@ -28,6 +28,13 @@ return {
   },
   keys = {
     {
+      "<C-p>",
+      function()
+        Snacks.picker.files()
+      end,
+      desc = "Find Files",
+    },
+    {
       "<leader><space>",
       function()
         Snacks.picker.smart()
@@ -112,21 +119,27 @@ return {
         Snacks.picker.lsp_type_definitions()
       end,
       desc = "Goto T[y]pe Definition",
-
-      {
-        "<leader>ss",
-        function()
-          Snacks.picker.lsp_symbols()
-        end,
-        desc = "LSP Symbols",
-      },
-      {
-        "<leader>sS",
-        function()
-          Snacks.picker.lsp_workspace_symbols()
-        end,
-        desc = "LSP Workspace Symbols",
-      },
+    },
+    {
+      "<leader>s",
+      function()
+        Snacks.picker.treesitter()
+      end,
+      desc = "LSP Symbols",
+    },
+    {
+      "<leader>S",
+      function()
+        Snacks.picker.lsp_workspace_symbols()
+      end,
+      desc = "LSP Workspace Symbols",
+    },
+    {
+      "<leader>p",
+      function()
+        Snacks.picker.pickers()
+      end,
+      desc = "All pickers",
     },
   },
 }

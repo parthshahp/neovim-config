@@ -44,7 +44,6 @@ end)
 
 o.splitright = true
 o.splitbelow = true
-o.confirm = true
 
 -- Add mason.nvim binaries to path
 local is_windows = vim.fn.has("win32") ~= 0

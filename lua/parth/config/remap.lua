@@ -1,10 +1,5 @@
 local map = vim.keymap.set
 
--- Delete global default keymaps
-vim.keymap.del("n", "grn")
-vim.keymap.del("n", "gra")
-vim.keymap.del("n", "gri")
-
 -- map("n", "<C-b>", vim.cmd.Ex, { desc = "Open NetRW" })
 map("i", "<C-c>", "<ESC>")
 map("n", "<ESC>", "<cmd>noh<CR>")
