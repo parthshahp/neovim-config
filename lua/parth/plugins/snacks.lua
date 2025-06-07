@@ -9,6 +9,7 @@ return {
     statuscolumn = { enabled = true },
     explorer = { enabled = true },
     picker = {
+      layout = { fullscreen = false },
       win = {
         input = {
           keys = {
@@ -18,7 +19,7 @@ return {
       },
       sources = {
         explorer = {
-          layout = { preset = "sidebar", layout = { position = "right" } },
+          layout = { fullscreen = false, preset = "sidebar", layout = { position = "right" } },
         },
         projects = {
           dev = { "~/Projects" },
@@ -34,13 +35,13 @@ return {
       end,
       desc = "Find Files",
     },
-    {
-      "<leader><space>",
-      function()
-        Snacks.picker.smart()
-      end,
-      desc = "Smart Find Files",
-    },
+    -- {
+    --   "<leader><space>",
+    --   function()
+    --     Snacks.picker.smart()
+    --   end,
+    --   desc = "Smart Find Files",
+    -- },
     {
       "<leader>,",
       function()

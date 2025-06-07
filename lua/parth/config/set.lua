@@ -10,6 +10,8 @@ g.netrw_banner = 0
 -- Options
 o.mouse = "a"
 
+o.winborder = "rounded"
+
 o.nu = true
 o.numberwidth = 2
 o.ruler = false

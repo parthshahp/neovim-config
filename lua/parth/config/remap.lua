@@ -34,7 +34,7 @@ map("v", "<leader>d", '"_d', { desc = "Delete to void buffer" })
 -- map("v", "<leader>y", '"+y')
 -- map("n", "<leader>Y", '"+Y')
 
-map("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
+map("n", "<leader><space>", "<C-^>", { desc = "Swap to last file" })
 
 -- Highlight on Yank
 vim.api.nvim_create_autocmd("TextYankPost", {

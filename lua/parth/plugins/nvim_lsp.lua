@@ -37,8 +37,9 @@ return {
           })
 
           local map = vim.keymap.set
+          vim.diagnostic.config({ virtual_lines = false, virtual_text = true })
           map("n", "<leader>d", vim.diagnostic.open_float, options)
-          map("n", "K", vim.lsp.buf.hover, options)
+          map("n", "K", '<cmd>lua vim.lsp.buf.hover({ border = "rounded" })<cr>', options)
           -- map("n", "gd", vim.lsp.buf.definition, options)
           -- map("n", "gD", vim.lsp.buf.declaration, options)
           map("n", "grn", vim.lsp.buf.rename, options)
@@ -73,8 +74,8 @@ return {
         nerd_font_variant = "mono",
       },
       completion = {
-        menu = { border = "single" },
-        documentation = { auto_show = true, window = { border = "single" } },
+        menu = { border = "rounded" },
+        documentation = { auto_show = true, window = { border = "rounded" } },
       },
       sources = {
         default = { "lsp", "path", "snippets", "buffer", "lazydev" },
