@@ -47,6 +47,10 @@ return {
             colorscheme = "dayfox",
           },
           {
+            name = "Nightfox",
+            colorscheme = "nightfox",
+          },
+          {
             name = "Nordfox",
             colorscheme = "nordfox",
           },
