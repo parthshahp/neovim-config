@@ -5,15 +5,18 @@ map("i", "<C-c>", "<ESC>")
 map("n", "<ESC>", "<cmd>noh<CR>")
 map("n", "<C-c>", "<cmd>%y+<CR>", { desc = "file copy whole" })
 
+-- Save file
+vim.keymap.set("n", "<leader>w", ":w<CR>", { desc = "Save file" })
+
 -- Move highlighted lines around
 map("v", "J", ":m '>+1<CR>gv=gv")
 map("v", "K", ":m '<-2<CR>gv=gv")
 
 -- Move windows
-map("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus to the left window" })
-map("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right window" })
-map("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
-map("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
+map("n", "<leader>h", "<C-w><C-h>", { desc = "Move focus to the left window" })
+map("n", "<leader>l", "<C-w><C-l>", { desc = "Move focus to the right window" })
+map("n", "<leader>j", "<C-w><C-j>", { desc = "Move focus to the lower window" })
+map("n", "<leader>k", "<C-w><C-k>", { desc = "Move focus to the upper window" })
 
 -- Don't move cursors to end of line when pressing J
 map("n", "J", "mzJ`z")
