@@ -23,6 +23,9 @@ return {
 					"html",
 					"css",
 					"rust",
+					"php",
+					"ruby",
+					"scala",
 				},
 			})
 		end,

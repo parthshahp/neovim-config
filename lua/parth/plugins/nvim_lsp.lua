@@ -3,7 +3,19 @@ return {
   {
     "mason-org/mason-lspconfig.nvim",
     dependencies = { "neovim/nvim-lspconfig" },
-    opts = {},
+    opts = {
+      handlers = {
+        -- Default handler for other servers
+        function(server_name)
+          require('lspconfig')[server_name].setup({})
+        end,
+        -- Custom handler for Ruby LSP to use bundle exec
+        ruby_lsp = function()
+          local config = require('lsp.ruby_lsp')
+          require('lspconfig').ruby_lsp.setup(config)
+        end,
+      },
+    },
   },
   {
     "mason-org/mason.nvim",
@@ -64,7 +76,7 @@ return {
   },
   {
     "saghen/blink.cmp",
-    dependencies = { "rafamadriz/friendly-snippets" },
+    dependencies = { "rafamadriz/friendly-snippets", "fang2hou/blink-copilot" },
     version = "1.*",
     ---@module 'blink.cmp'
     ---@type blink.cmp.Config
@@ -78,21 +90,27 @@ return {
         documentation = { auto_show = true, window = { border = "rounded" } },
       },
       sources = {
-        default = { "lsp", "path", "snippets", "buffer", "lazydev" },
+        default = { "lsp", "path", "snippets", "buffer", "lazydev", "copilot"},
         providers = {
           lazydev = {
             name = "LazyDev",
             module = "lazydev.integrations.blink",
             score_offset = 100, -- make lazydev completions top priority (see `:h blink.cmp`)
           },
+          copilot = {
+            name = "Copilot",
+            module = "blink.copilot",
+            score_offset = 50,
+            async = true,
+          }
         },
-        path = {
-          opts = {
-            get_cwd = function(_)
-              return vim.fn.getcwd()
-            end,
-          },
-        },
+        -- path = {
+        --   opts = {
+        --     get_cwd = function(_)
+        --       return vim.fn.getcwd()
+        --     end,
+        --   },
+        -- } 
       },
       fuzzy = { implementation = "prefer_rust_with_warning" },
       signature = {
@@ -101,5 +119,10 @@ return {
       },
     },
     opts_extend = { "sources.default" },
+  },
+  { 
+      "fang2hou/blink-copilot", 
+      dependencies = { "zbirenbaum/copilot.lua" }, -- It depends on copilot.lua
+      lazy = true, -- If you are lazily loading all plugins
   },
 }

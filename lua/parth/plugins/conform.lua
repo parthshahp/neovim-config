@@ -8,7 +8,6 @@ return {
         lua = { "stylua" },
         css = { "prettierd" },
         html = { "prettierd" },
-        svelte = { "svelte" },
         javascript = { "prettierd" },
         typescript = { "prettierd" },
         json = { "prettierd" },

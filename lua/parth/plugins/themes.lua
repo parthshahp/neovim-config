@@ -32,6 +32,17 @@ return {
       require("themery").setup({
         themes = {
           {
+            name = "One Light",
+            colorscheme = "onedark",
+            before = [[
+              vim.o.background="light"
+            ]],
+            after = [[
+              require("onedark").setup({ style = "light"})
+              require("onedark").load()
+            ]],
+          },
+          {
             name = "OneDark",
             colorscheme = "onedark",
             before = [[
