@@ -18,6 +18,10 @@ map("n", "<leader>l", "<C-w><C-l>", { desc = "Move focus to the right window" })
 map("n", "<leader>j", "<C-w><C-j>", { desc = "Move focus to the lower window" })
 map("n", "<leader>k", "<C-w><C-k>", { desc = "Move focus to the upper window" })
 
+-- Move around Quickfix list
+map("n", "<C-j>", ':cnext<CR>zzg`"', { desc = "Next in Quickfix list" })
+map("n", "<C-k>", ':cprev<CR>zzg`"', { desc = "Previous in Quickfix list" })
+
 -- Don't move cursors to end of line when pressing J
 map("n", "J", "mzJ`z")
 
@@ -41,11 +45,11 @@ map("n", "<leader><space>", "<C-^>", { desc = "Swap to last file" })
 
 -- Highlight on Yank
 vim.api.nvim_create_autocmd("TextYankPost", {
-  desc = "Highlight when yanking (copying) text",
-  group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
-  callback = function()
-    vim.highlight.on_yank()
-  end,
+	desc = "Highlight when yanking (copying) text",
+	group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
+	callback = function()
+		vim.highlight.on_yank()
+	end,
 })
 
 -- LSP

@@ -32,6 +32,6 @@ local function open_and_switch_to_terminal()
 	end
 end
 
-vim.keymap.set("n", "<leader>j", open_and_switch_to_terminal, { desc = "Open/Switch to Terminal" })
+vim.keymap.set("n", "<leader>te", open_and_switch_to_terminal, { desc = "Open/Switch to Terminal" })
 vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit Terminal Mode" })
 -- vim.keymap.set("t", "<C-<Esc>>", "<C-\\><C-n>", { desc = "Exit Terminal Mode" })
