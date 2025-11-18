@@ -1,5 +1,9 @@
 return {
   {
+    "webhooked/kanso.nvim",
+    lazy = true,
+  },
+  {
     "navarasu/onedark.nvim",
     lazy = true,
   },
@@ -31,6 +35,19 @@ return {
     config = function()
       require("themery").setup({
         themes = {
+          {
+            name = "Kanso",
+            colorscheme = "kanso",
+            after = [[
+              require("kanso").load("pearl")
+              require('kanso').setup({
+                  foreground = {
+                      dark = "default",    -- Use default colors in dark mode
+                      light = "saturated"   -- Use higher saturation in light mode
+                  },
+              })
+            ]],
+          },
           {
             name = "One Light",
             colorscheme = "onedark",
