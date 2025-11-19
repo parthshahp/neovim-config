@@ -40,13 +40,18 @@ return {
 		config = function()
 			vim.api.nvim_create_autocmd("LspAttach", {
 				callback = function(event)
+					local client = vim.lsp.get_client_by_id(event.data.client_id)
 					local options = { buffer = event.buf }
-					vim.api.nvim_create_autocmd("BufWritePre", {
-						buffer = event.buf,
-						callback = function()
-							vim.lsp.buf.format({ async = false, id = event.data.client_id })
-						end,
-					})
+					
+					-- Only set up LSP formatting if the client supports it
+					if client and client.server_capabilities.documentFormattingProvider then
+						vim.api.nvim_create_autocmd("BufWritePre", {
+							buffer = event.buf,
+							callback = function()
+								vim.lsp.buf.format({ async = false, id = event.data.client_id })
+							end,
+						})
+					end
 
 					local map = vim.keymap.set
 					vim.diagnostic.config({ virtual_lines = false, virtual_text = true })
