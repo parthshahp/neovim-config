@@ -4,6 +4,10 @@ return {
 	lazy = false,
 	---@type snacks.Config
 	opts = {
+		gh = {},
+		util = { enabled = true },
+		scope = {},
+		lazygit = { enabled = false },
 		git = { enabled = true },
 		indent = { enabled = true },
 		statuscolumn = { enabled = true },
@@ -18,6 +22,8 @@ return {
 				},
 			},
 			sources = {
+				gh_pr = { layout = { fullscreen = true } },
+				gh_diff = { layout = { fullscreen = true } },
 				explorer = {
 					layout = { fullscreen = false, preset = "sidebar", layout = { position = "right" } },
 				},
@@ -42,13 +48,13 @@ return {
 			end,
 			desc = "Find Files",
 		},
-		-- {
-		--   "<leader><space>",
-		--   function()
-		--     Snacks.picker.smart()
-		--   end,
-		--   desc = "Smart Find Files",
-		-- },
+		{
+			"<leader>ff",
+			function()
+				Snacks.picker.smart()
+			end,
+			desc = "Smart Find Files",
+		},
 		{
 			"<leader>,",
 			function()
@@ -162,6 +168,20 @@ return {
 				Snacks.picker.diagnostics_buffer()
 			end,
 			desc = "Buffer Diagnostics",
+		},
+		{
+			"<leader>gp",
+			function()
+				Snacks.picker.gh_pr()
+			end,
+			desc = "GitHub Pull Requests (open)",
+		},
+		{
+			"<leader>gP",
+			function()
+				Snacks.picker.gh_pr({ state = "all" })
+			end,
+			desc = "GitHub Pull Requests (all)",
 		},
 	},
 }
