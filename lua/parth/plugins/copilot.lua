@@ -9,7 +9,7 @@ return {
 		event = "InsertEnter",
 		config = function()
 			require("copilot").setup({
-				copilot_node_command = "/Users/parth.shah/.local/share/fnm/node-versions/v22.21.0/installation/bin/node",
+				copilot_node_command = "/Users/parth.shah/.local/share/fnm/node-versions/v22.21.1/installation/bin/node",
 				suggestion = {
 					enabled = false,
 					auto_trigger = false,
